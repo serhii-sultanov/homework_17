@@ -7,10 +7,10 @@ const tasksList = document.getElementById("list");
 const errorMessage = document.querySelector(".error-message");
 const removeButton = document.querySelector(".remove-btn");
 
-function createNewTask() {
+function createNewTask(value) {
   const taskItem = document.createElement("li");
   taskItem.classList.add("task-item");
-  taskItem.innerHTML = task.value;
+  taskItem.innerHTML = value;
   tasksList.append(taskItem);
 
   const removeBtn = document.createElement("button");
@@ -27,10 +27,7 @@ tasksForm.addEventListener("submit", (event) => {
     errorMessage.innerHTML = "Please, enter your task";
     return;
   }
-  createNewTask();
-});
-
-tasksForm.addEventListener("submit", () => {
+  createNewTask(task.value);
   task.value = "";
 });
 
