@@ -5,7 +5,6 @@ const formElements = tasksForm.elements;
 const { task, submit } = formElements;
 const tasksList = document.getElementById("list");
 const errorMessage = document.querySelector(".error-message");
-const removeButton = document.querySelector(".remove-btn");
 
 function createNewTask(value) {
   const taskItem = document.createElement("li");
@@ -18,6 +17,12 @@ function createNewTask(value) {
   removeBtn.setAttribute("type", "button");
   removeBtn.innerHTML = "Delete";
   taskItem.append(removeBtn);
+
+  const checkBox = document.createElement("input");
+  checkBox.setAttribute("type", "checkbox");
+  checkBox.setAttribute("name", "checkbox");
+  checkBox.classList.add("check-task");
+  taskItem.prepend(checkBox);
 }
 
 tasksForm.addEventListener("submit", (event) => {
@@ -45,3 +50,14 @@ tasksList.onclick = (event) => {
     event.target.closest(".task-item").remove();
   }
 };
+
+tasksList.addEventListener("change", (event) => {
+  const isCheckBox = event.target.className === "check-task";
+  const taskItem = event.target.closest(".task-item");
+
+  if (isCheckBox && event.target.checked) {
+    event.target.disabled = true;
+    taskItem.querySelector(".remove-btn").disabled = true;
+    taskItem.style.textDecoration = "line-through";
+  }
+});
