@@ -71,8 +71,6 @@ tasksList.addEventListener("change", (event) => {
 
 // progress bar
 function markProgress() {
-  const totalTasks = [
-    ...document.getElementById("list").getElementsByTagName("li"),
-  ].length;
+  const totalTasks = [...document.querySelectorAll(".task-item")].length;
   return (progressBar.style = ` width:${(doneTasks / totalTasks) * 100}%`);
 }
