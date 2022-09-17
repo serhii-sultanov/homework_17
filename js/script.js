@@ -5,6 +5,10 @@ const formElements = tasksForm.elements;
 const { task, submit } = formElements;
 const tasksList = document.getElementById("list");
 const errorMessage = document.querySelector(".error-message");
+const progressBar = document.querySelector(".progress-bar");
+const taskItem = document.querySelector(".task-item");
+
+let doneTasks = 0;
 
 function createNewTask(value) {
   const taskItem = document.createElement("li");
@@ -23,6 +27,7 @@ function createNewTask(value) {
   checkBox.setAttribute("name", "checkbox");
   checkBox.classList.add("check-task");
   taskItem.prepend(checkBox);
+  markProgress();
 }
 
 tasksForm.addEventListener("submit", (event) => {
@@ -59,5 +64,15 @@ tasksList.addEventListener("change", (event) => {
     event.target.disabled = true;
     taskItem.querySelector(".remove-btn").disabled = true;
     taskItem.style.textDecoration = "line-through";
+    doneTasks++;
+    markProgress();
   }
 });
+
+// progress bar
+function markProgress() {
+  const totalTasks = [
+    ...document.getElementById("list").getElementsByTagName("li"),
+  ].length;
+  return (progressBar.style = ` width:${(doneTasks / totalTasks) * 100}%`);
+}
