@@ -95,3 +95,39 @@ body {
     transform: scale(2);
     -webkit-transform: scale(2);
 }
+
+@media screen and (max-width: 1024px) {
+    .tasks-form {
+        width: 90vw;
+        padding: 2rem;
+    }
+
+    .tasks-list {
+        width: 90vw;
+    }
+
+    .error-message {
+        top: 0.1rem;
+        color: #ef425a;
+        font-size: 1rem;
+    }
+
+    .input-field {
+        font-size: 1.1rem;
+    }
+
+    .submit-btn {
+        width: 30vw;
+        font-size: 1.3rem;
+    }
+
+    .task-item {
+        font-size: 1.2rem;
+    }
+
+    .remove-btn {
+        margin-left: 1.5rem;
+        width: 20vw;
+        font-size: 0.9rem;
+    }
+}
